@@ -17,3 +17,12 @@ export const getRecommends = (limit) =>
 //     }
 //   })
 // }
+
+// 最新音乐
+export const getNewSongs = (limit) =>
+  axios({
+    url: '/personalized/newsong',
+    params: {
+      limit
+    }
+  })

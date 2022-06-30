@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="layout">
     <!--头部导航 -->
     <van-nav-bar :title="navBarTitle" />
 
@@ -32,4 +32,14 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped>
+.layout {
+  padding: 50px 0;
+}
+.van-nav-bar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+</style>
