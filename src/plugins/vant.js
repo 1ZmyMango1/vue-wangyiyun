@@ -7,7 +7,8 @@ import {
   Grid,
   GridItem,
   Icon,
-  Search
+  Search,
+  List
 } from 'vant'
 
 const elements = [
@@ -19,7 +20,8 @@ const elements = [
   Grid,
   GridItem,
   Icon,
-  Search
+  Search,
+  List
 ]
 
 export default function (Vue) {

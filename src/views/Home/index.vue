@@ -17,7 +17,7 @@
     <van-cell title="最新音乐" class="cell-model" />
 
     <!-- 最喜音乐列表 -->
-    <van-cell
+    <!-- <van-cell
       :title="item.name"
       :label="item.song.artists[0].name + '-----' + item.name"
       center
@@ -26,13 +26,24 @@
       class="new-son"
     >
       <van-icon name="play-circle-o" />
-    </van-cell>
+    </van-cell> -->
+    <SongItem
+      v-for="item in getSongs"
+      :key="item.id"
+      :id="item.id"
+      :title="item.name"
+      :label="item.song.artists[0].name + '----' + item.name"
+    ></SongItem>
   </div>
 </template>
 
 <script>
 import { getRecommends, getNewSongs } from '@/api/home'
+import SongItem from '@/components/SongItem.vue'
 export default {
+  components: {
+    SongItem
+  },
   data() {
     return {
       recommends: [],

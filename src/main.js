@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './routers'
-// import axios from './utils/request.js'
+
 import vant from './plugins/vant.js'
 
-// Vue.use(axios)
+import './styles/reset.css'
+
 Vue.use(vant)
 
 Vue.config.productionTip = false

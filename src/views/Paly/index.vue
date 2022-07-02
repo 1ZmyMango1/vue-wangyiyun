@@ -70,14 +70,14 @@
 
 <script>
 // 获取歌曲详情和 歌曲的歌词接口(引入完后解开)
-// import { getSongByIdAPI, getLyricByIdAPI } from '@/api'
+import { getSongByIdAPI, getLyricByIdAPI } from '@/api'
 import { Icon } from 'vant'
 export default {
   components: {
     [Icon.name]: Icon
   },
   name: 'play',
-  data () {
+  data() {
     return {
       playState: false, // 音乐播放状态(true暂停, false播放)
       id: this.$route.query.id, // 上一页传过来的音乐id
@@ -88,25 +88,25 @@ export default {
     }
   },
   computed: {
-    needleDeg () {
+    needleDeg() {
       // 留声机-唱臂的位置属性
       return this.playState ? '-7deg' : '-38deg'
     }
   },
   methods: {
     // 获取歌曲详情, 和歌词方法引入后解开
-    async getSong () {
-      // // 获取歌曲详情, 和歌词方法
-      // const res = await getSongByIdAPI(this.id)
-      // this.songInfo = res.data.songs[0]
-      // // 获取-并调用_formatLyr方法, 处理歌词
-      // const lyrContent = await getLyricByIdAPI(this.id)
-      // const lyricStr = lyrContent.data.lrc.lyric
-      // this.lyric = this._formatLyr(lyricStr)
-      // // 初始化完毕先显示零秒歌词
-      // this.curLyric = this.lyric[0]
+    async getSong() {
+      // 获取歌曲详情, 和歌词方法
+      const res = await getSongByIdAPI(this.id)
+      this.songInfo = res.data.songs[0]
+      // 获取-并调用_formatLyr方法, 处理歌词
+      const lyrContent = await getLyricByIdAPI(this.id)
+      const lyricStr = lyrContent.data.lrc.lyric
+      this.lyric = this._formatLyr(lyricStr)
+      // 初始化完毕先显示零秒歌词
+      this.curLyric = this.lyric[0]
     },
-    _formatLyr (lyricStr) {
+    _formatLyr(lyricStr) {
       // 可以看network观察歌词数据是一个大字符串, 进行拆分.
       const reg = /\[.+?\]/g //
       const timeArr = lyricStr.match(reg) // 匹配所有[]字符串以及里面的一切内容, 返回数组
@@ -129,7 +129,7 @@ export default {
       // console.log(lyricObj)
       return lyricObj
     },
-    audioStart () {
+    audioStart() {
       // 播放按钮 - 点击事件
       if (!this.playState) {
         // 如果状态为false
@@ -139,7 +139,7 @@ export default {
       }
       this.playState = !this.playState // 点击设置对立状态
     },
-    showLyric () {
+    showLyric() {
       // 监听播放audio进度, 切换歌词显示
       this.$refs.audio.addEventListener('timeupdate', () => {
         const curTime = Math.floor(this.$refs.audio.currentTime)
@@ -153,7 +153,7 @@ export default {
       })
     }
   },
-  mounted () {
+  mounted() {
     this.getSong()
     this.showLyric()
     // console.log(this.$route.query.id)
